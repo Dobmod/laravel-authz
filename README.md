@@ -7,7 +7,7 @@
 </p>
 
 <p align="center">
-    <a href="https://github.com/php-casbin/laravel-authz/actions">
+    <a href="https://github.com/php-casbin/laravel-authz/actions/workflows/build.yml">
         <img src="https://github.com/php-casbin/laravel-authz/workflows/build/badge.svg?branch=master" alt="Build Status">
     </a>
     <a href="https://coveralls.io/github/php-casbin/laravel-authz">
@@ -275,6 +275,16 @@ Then, using middleware rules:
 Route::group(['middleware' => ['http_request']], function () {
     Route::resource('photo', 'PhotoController');
 });
+```
+
+### Using Gates
+
+You can use Laravel Gates to check if a user has a permission, provided that you have set an existing user instance as the currently authenticated user using `Auth::login`. See [Gates](https://laravel.com/docs/11.x/authorization#gates) for more details.
+
+```php
+if(Gate::allows('enforcer', ['articles', 'read'])) {
+    // The user can read articles
+};
 ```
 
 ### Multiple enforcers
