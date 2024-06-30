@@ -105,6 +105,10 @@ class ModelLoaderTest extends TestCase
 
         $config = $this->app['config']->get('lauthz.second');
         $loader = $this->app->make(LoaderManager::class);
+        
+        $this->expectException(InvalidArgumentException::class);
+        Enforcer::guard('second');
+
         $loader->extend('custom', function () use ($config) {
             return new \Lauthz\Loaders\TextLoader($config);
         });
