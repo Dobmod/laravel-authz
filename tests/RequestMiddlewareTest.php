@@ -45,9 +45,9 @@ class RequestMiddlewareTest extends TestCase
         $this->assertEquals($this->middleware(Request::create('/proxy', 'GET'), 'second'), 'Unauthorized Exception');
     }
 
-    protected function middleware($request, $guard = null)
+    protected function middleware($request, ...$guards)
     {
-        return parent::runMiddleware(RequestMiddleware::class, $request, $guard);
+        return parent::runMiddleware(RequestMiddleware::class, $request, ...$guards);
     }
 
     protected function initConfig()

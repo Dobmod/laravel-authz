@@ -68,6 +68,14 @@ class ModelLoaderTest extends TestCase
         $this->assertFalse(Enforcer::enforce('alice', 'data', 'read'));
     }
 
+    public function testNotExistLoaderType(): void
+    {
+        $this->app['config']->set('lauthz.basic.model.config_type', 'not_exist');
+        $this->expectException(InvalidArgumentException::class);
+
+        $this->assertFalse(Enforcer::enforce('alice', 'data', 'read'));
+    }
+
     public function testBadUrlConnection(): void
     {
         $this->initUrlConfig();
@@ -105,9 +113,6 @@ class ModelLoaderTest extends TestCase
 
         $config = $this->app['config']->get('lauthz.second');
         $loader = $this->app->make(LoaderManager::class);
-        
-        $this->expectException(InvalidArgumentException::class);
-        Enforcer::guard('second');
 
         $loader->extend('custom', function () use ($config) {
             return new \Lauthz\Loaders\TextLoader($config);

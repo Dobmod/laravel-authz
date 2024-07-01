@@ -91,10 +91,6 @@ class LoaderManager extends Manager
      */
     protected function createDriver($driver)
     {
-        if (empty($driver)) {
-            throw new InvalidArgumentException("Unsupported empty model loader type.");
-        }
-
         if (isset($this->customCreators[$driver])) {
             return $this->callCustomCreator($driver);
         }
