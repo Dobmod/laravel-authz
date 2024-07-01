@@ -7,7 +7,7 @@
 </p>
 
 <p align="center">
-    <a href="https://github.com/php-casbin/laravel-authz/actions">
+    <a href="https://github.com/php-casbin/laravel-authz/actions/workflows/build.yml">
         <img src="https://github.com/php-casbin/laravel-authz/workflows/build/badge.svg?branch=master" alt="Build Status">
     </a>
     <a href="https://coveralls.io/github/php-casbin/laravel-authz">
